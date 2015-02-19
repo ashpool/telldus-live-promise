@@ -7,9 +7,9 @@ Before Starting
 ---------------
 You will need:
 
-- a Telldus Live account [login.telldus.com](https://login.telldus.com)
+- Telldus Live account [login.telldus.com](https://login.telldus.com)
 
-- and OAuth tokens [api.telldus.com](http://api.telldus.com/keys/index)
+- OAuth tokens [api.telldus.com](http://api.telldus.com/keys/index)
 
 Install
 -------
