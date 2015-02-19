@@ -19,7 +19,7 @@ Install
 API
 ---
 
-### Load
+### Setup
 
 ```
 var config = {
