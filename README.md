@@ -5,12 +5,11 @@ A node.js module to interface with the [Telldus Live API](http://api.telldus.com
 
 Before Starting
 ---------------
-You will need a Telldus Live account and OAuth tokens:
+You will need:
 
-- To get a Telldus Live account, go to [login.telldus.com](https://login.telldus.com)
+- a Telldus Live account [login.telldus.com](https://login.telldus.com)
 
-- Once you have a Telldus Live account, go to [api.telldus.com](http://api.telldus.com/keys/index) and _Generate a private token for my user only_.
-
+- and OAuth tokens [api.telldus.com](http://api.telldus.com/keys/index)
 
 Install
 -------
