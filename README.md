@@ -14,7 +14,7 @@ You will need:
 Install
 -------
 
-``npm install telldus-live-promise`
+``npm install telldus-live-promise``
 
 API
 ---
