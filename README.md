@@ -28,18 +28,14 @@ var config = {
   "telldusToken": "...",
   "telldusTokenSecret": "...",
 },
-	telldusClient = require('telldus-live-promise').Client(config),
-	telldus = require('telldus-live-promise').Promise(telldusClient, config);
-
-
+telldusClient = require('telldus-live-promise').Client(config),
+telldus = require('telldus-live-promise').Promise(telldusClient, config);
 ```
 
 ### Get sensor information
 
 ```
-	telldus.getSensors().then(telldus.getSensorInfos).then(<do something useful>);
+telldus.getSensors().then(telldus.getSensorInfos).then(<do something useful>);
 ```
 
-Finally
--------
-This project uses [telldus-live](https://github.com/TheThingSystem/node-telldus-live)
+_This project uses [telldus-live](https://github.com/TheThingSystem/node-telldus-live)_
