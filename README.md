@@ -38,4 +38,4 @@ telldus = require('telldus-live-promise').Promise(telldusClient, config);
 telldus.getSensors().then(telldus.getSensorInfos).then(<do something useful>);
 ```
 
-_This project uses [telldus-live](https://github.com/TheThingSystem/node-telldus-live)_
+_This project uses [telldus-live](https://github.com/TheThingSystem/node-telldus-live) which provides access to the full Telldus API_
