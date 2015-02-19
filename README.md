@@ -1,7 +1,7 @@
 telldus-live-promise
 =================
 
-A node.js module to interface with the [Telldus Live API](http://api.telldus.com).
+A node.js module to interface with the [Telldus Live API](http://api.telldus.com) [promise style](https://www.promisejs.org/).
 
 Before Starting
 ---------------
