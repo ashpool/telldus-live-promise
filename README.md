@@ -29,7 +29,7 @@ var config = {
   "telldusTokenSecret": "...",
 },
 telldusClient = require('telldus-live-promise').Client(config),
-telldus = require('telldus-live-promise').Promise(telldusClient, config);
+telldus = require('telldus-live-promise').Telldus(telldusClient, config);
 ```
 
 ### Get sensor information
