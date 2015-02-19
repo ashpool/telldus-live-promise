@@ -42,4 +42,4 @@ var config = {
 
 Finally
 -------
-This project uses [telldus-live)](https://github.com/TheThingSystem/node-telldus-live)
+This project uses [telldus-live](https://github.com/TheThingSystem/node-telldus-live)
