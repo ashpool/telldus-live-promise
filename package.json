@@ -1,0 +1,38 @@
+{
+  "name": "telldus-live-promise",
+  "version": "0.0.2",
+  "description": "A node.js module to interface with Telldus Live API promise style",
+  "main": "lib",
+  "author": "Magnus Ljadas <magnus.ljadas@gmail.com> (https://github.com/ashpool)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashpool/telldus-live-promise.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ashpool/telldus-live-promise/issues"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "dependencies": {
+    "lodash": "^3.2.0",
+    "log4js-extras": "git://github.com/ashpool/log4js-extras.git#v0.0.2",
+    "oauth": "~0.9.11",
+    "rsvp": "^3.0.17",
+    "telldus-live": "^0.2.1",
+    "underscore": "1.5.1"
+  },
+  "keywords": [
+    "Telldus"
+  ],
+  "engines": {
+    "node": ">=0.10"
+  },
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-coverage": "^0.3.34",
+    "gulp-jshint": "^1.9.2",
+    "gulp-mocha": "^2.0.0"
+  }
+}
