@@ -24,6 +24,7 @@ var config = {
   "telldusPrivateKey": "...",
   "telldusToken": "...",
   "telldusTokenSecret": "...",
+  "logLevel": "INFO"
 },
 telldusClient = require('telldus-live-promise').Client(config),
 telldus = require('telldus-live-promise').Telldus(telldusClient, config);
