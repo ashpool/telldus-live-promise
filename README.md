@@ -30,17 +30,15 @@ telldus = require('telldus-live-promise'),
 client = telldus.Client(config),
 sensors = telldus.Sensors(client);
 
-sensors.getSensors().then(sensors.getSensorInfos).then(<do something useful>).catch(logger.error);
-
 ```
 
 ### Get sensor information
 
 ```
-telldus.getSensors().then(telldus.getSensorInfos).then(<do something useful>);
+sensors.getSensors().then(sensors.getSensorInfos).then(<do something useful>).catch(logger.error);
 ```
 
-_This project uses [telldus-live](https://github.com/TheThingSystem/node-telldus-live) which provides access to the full Telldus Live API_
+This project draws inspiration from (node-telldus-live)[https://github.com/TheThingSystem/node-telldus-live]
 
 [npm-url]: https://npmjs.org/package/telldus-live-promise
 [downloads-image]: http://img.shields.io/npm/dm/telldus-live-promise.svg
