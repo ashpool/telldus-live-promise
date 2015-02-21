@@ -1,1 +1,1 @@
-require('./telldus');
+require('./sensors');
