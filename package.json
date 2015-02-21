@@ -17,6 +17,7 @@
   "dependencies": {
     "lodash": "^3.2.0",
     "log4js-extras": "git://github.com/ashpool/log4js-extras.git#v0.0.2",
+    "oauth": "^0.9.12",
     "querystring": "^0.2.0",
     "rsvp": "^3.0.17",
     "telldus-live": "^0.2.1"
