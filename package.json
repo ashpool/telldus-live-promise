@@ -16,23 +16,23 @@
   },
   "dependencies": {
     "lodash": "^3.2.0",
-    "log4js-extras": "git://github.com/ashpool/log4js-extras.git#v0.0.2",
     "oauth": "^0.9.12",
     "querystring": "^0.2.0",
-    "rsvp": "^3.0.17",
-    "telldus-live": "^0.2.1"
+    "rsvp": "^3.0.17"
   },
   "keywords": [
-    "Telldus"
+    "Telldus, promises"
   ],
   "engines": {
     "node": ">=0.10"
   },
   "readmeFilename": "README.md",
   "devDependencies": {
+    "chai": "^2.0.0",
     "gulp": "^3.8.11",
     "gulp-coverage": "^0.3.34",
     "gulp-jshint": "^1.9.2",
-    "gulp-mocha": "^2.0.0"
+    "gulp-mocha": "^2.0.0",
+    "mocha": "^1.21.5"
   }
 }

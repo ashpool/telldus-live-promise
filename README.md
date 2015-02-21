@@ -20,14 +20,18 @@ You will need:
 
 ```
 var config = {
-  "telldusPublicKey": "...",
-  "telldusPrivateKey": "...",
-  "telldusToken": "...",
-  "telldusTokenSecret": "...",
-  "logLevel": "INFO"
+  telldusPublicKey: "...",
+  telldusPrivateKey: "...",
+  telldusToken: "...",
+  telldusTokenSecret: "...",
+  logger: <your favorite logger - optional>
 },
-telldusClient = require('telldus-live-promise').Client(config),
-telldus = require('telldus-live-promise').Telldus(telldusClient, config);
+telldus = require('telldus-live-promise'),
+client = telldus.Client(config),
+sensors = telldus.Sensors(client);
+
+sensors.getSensors().then(sensors.getSensorInfos).then(<do something useful>).catch(logger.error);
+
 ```
 
 ### Get sensor information
