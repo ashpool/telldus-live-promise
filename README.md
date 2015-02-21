@@ -38,7 +38,7 @@ sensors = telldus.Sensors(client);
 sensors.getSensors().then(sensors.getSensorInfos).then(<do something useful>).catch(logger.error);
 ```
 
-This project draws inspiration from (node-telldus-live)[https://github.com/TheThingSystem/node-telldus-live]
+This project draws inspiration from [node-telldus-live](https://github.com/TheThingSystem/node-telldus-live)
 
 [npm-url]: https://npmjs.org/package/telldus-live-promise
 [downloads-image]: http://img.shields.io/npm/dm/telldus-live-promise.svg
