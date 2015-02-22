@@ -1,7 +1,7 @@
 # telldus-live-promise
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url]
 
-A node.js module to interface with the [Telldus Live API](http://api.telldus.com) [promise style](https://www.promisejs.org/).
+A node.js module to interface with the [Telldus Live API](http://api.telldus.com) [promise style](https://promisesaplus.com).
 
 ## Before Starting
 You will need:
