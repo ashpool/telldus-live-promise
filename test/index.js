@@ -1,1 +1,2 @@
+require('./devices');
 require('./sensors');

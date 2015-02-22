@@ -1,7 +1,8 @@
 var gulp = require('gulp'),
 	jshint = require('gulp-jshint'),
 	mocha = require('gulp-mocha'),
-	cover = require('gulp-coverage');
+	cover = require('gulp-coverage'),
+	jscs = require('gulp-jscs');
 
 gulp.task('default', ['lint', 'test'], function () {
 });
