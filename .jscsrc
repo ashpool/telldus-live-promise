@@ -35,7 +35,6 @@
   "disallowPaddingNewlinesInBlocks": true,
   "disallowEmptyBlocks": true,
   "disallowSpacesInsideArrayBrackets": true,
-  "requireSpacesInsideObjectBrackets": "all",
   "disallowQuotedKeysInObjects": true,
   "disallowSpaceAfterObjectKeys": true,
   "requireCommaBeforeLineBreak": true,
