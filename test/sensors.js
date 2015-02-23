@@ -39,7 +39,6 @@ const sensorsResult = {
 
 describe('sensors', function () {
     describe('#getSensors()', function () {
-        var logger = console;
         describe('success', function () {
             it('returns an array of sensors - if everything works fine', function (done) {
                 var client = {
@@ -49,7 +48,7 @@ describe('sensors', function () {
                             });
                         }
                     },
-                    sensors = require('../lib').Sensors(client, { logger: logger });
+                    sensors = require('../lib').Sensors(client);
                 sensors.getSensors().then(function (result) {
                     result.should.equal(sensorsResult.sensor);
                     done();
@@ -67,7 +66,7 @@ describe('sensors', function () {
                             });
                         }
                     },
-                    sensors = require('../lib').Sensors(client, { logger: logger });
+                    sensors = require('../lib').Sensors(client);
                 sensors.getSensors().then(function () {
                     done('this call should fail');
                 }).catch(function (reason) {

@@ -49,7 +49,6 @@ var devicesResult = {
 
 describe('devices', function () {
     describe('#getDevices()', function () {
-        var logger = console;
         describe('success', function () {
             it('returns an array of sensors - if everything works fine', function (done) {
                 var client = {
@@ -59,12 +58,30 @@ describe('devices', function () {
                             });
                         }
                     },
-                    devices = require('../lib').Devices(client, {logger: logger});
+                    devices = require('../lib').Devices(client);
                 devices.getDevices().then(function (result) {
                     result.should.equal(devicesResult.device);
                     done();
                 }).catch(function (reason) {
                     done(reason);
+                });
+            });
+        });
+        describe('failure', function () {
+            it('forwards error message', function (done) {
+                var client = {
+                        invoke: function invoke () {
+                            return new RSVP.Promise(function (resolve, reject) {
+                                reject('failure');
+                            });
+                        }
+                    },
+                    devices = require('../lib').Devices(client);
+                devices.getDevices().then(function () {
+                    done('this call should fail');
+                }).catch(function (reason) {
+                    reason.should.equal('failure');
+                    done();
                 });
             });
         });
