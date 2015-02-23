@@ -30,7 +30,6 @@ telldus = require('telldus-live-promise'),
 client = telldus.Client(config),
 sensors = telldus.Sensors(client);
 devices = telldus.Devices(client);
-
 ```
 
 ### Sensors
