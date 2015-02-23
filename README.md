@@ -32,10 +32,21 @@ sensors = telldus.Sensors(client);
 
 ```
 
-### Get sensor information
+### Sensors
 
+#### Read values from all sensors
 ```
 sensors.getSensors().then(sensors.getSensorInfos).then(<do something useful>).catch(logger.error);
+```
+
+### Devices
+
+#### Turn off every device
+
+```
+devices.getDevices().then(function(sensors){
+	sensors.map(devices.turnOff);
+});
 ```
 
 _This project draws inspiration from [node-telldus-live](https://github.com/TheThingSystem/node-telldus-live)_
