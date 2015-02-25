@@ -68,7 +68,7 @@ describe('client', function () {
                 telldus = require('../lib'),
                 client = telldus.Client(config),
                 err = new Error('This is an error'),
-                body = {"body": "body"},
+                body = '{"body": "body"}',
                 response = {statusCode: 200},
                 method = 'GET',
                 resolve = function () {
