@@ -52,7 +52,7 @@ describe('devices', function () {
         describe('success', function () {
             it('returns an array of sensors - if everything works fine', function (done) {
                 var client = {
-                        invoke: function invoke () {
+                        request: function invoke () {
                             return new RSVP.Promise(function (resolve) {
                                 resolve(devicesResult);
                             });
@@ -70,7 +70,7 @@ describe('devices', function () {
         describe('failure', function () {
             it('forwards error message', function (done) {
                 var client = {
-                        invoke: function invoke () {
+                        request: function invoke () {
                             return new RSVP.Promise(function (resolve, reject) {
                                 reject('failure');
                             });

@@ -23,8 +23,7 @@ var config = {
   telldusPublicKey: "...",
   telldusPrivateKey: "...",
   telldusToken: "...",
-  telldusTokenSecret: "...",
-  logger: <your favorite logger - optional>
+  telldusTokenSecret: "..."
 },
 telldus = require('telldus-live-promise'),
 client = telldus.Client(config),
