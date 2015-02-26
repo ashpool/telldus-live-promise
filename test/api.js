@@ -14,7 +14,6 @@ describe('client', function () {
                 err = null,
                 body = '{"body" : "body"}',
                 response = {statusCode: 200},
-                method = 'GET',
                 resolve = function (value) {
                     value.body.should.equal('body');
                     done();
@@ -22,7 +21,7 @@ describe('client', function () {
                 reject = function (reason) {
                     done(reason);
                 };
-            api._parseResponse(err, body, response, method, resolve, reject);
+            api._parseResponse(err, body, response, resolve, reject);
         });
         it('response code other than 200 yield an error', function (done) {
             var config =
@@ -32,7 +31,6 @@ describe('client', function () {
                 err = null,
                 body = '{"body" : "body"}',
                 response = {statusCode: 404},
-                method = 'GET',
                 resolve = function () {
                     done('this one should have failed');
                 },
@@ -41,7 +39,7 @@ describe('client', function () {
                     reason.message.should.equals('Got unexpected response code 404');
                     done();
                 };
-            api._parseResponse(err, body, response, method, resolve, reject);
+            api._parseResponse(err, body, response, resolve, reject);
         });
         it('broken body yields an error', function (done) {
             var config =
@@ -51,7 +49,6 @@ describe('client', function () {
                 err = null,
                 body = {body: 'this is not proper json'},
                 response = {statusCode: 200},
-                method = 'GET',
                 resolve = function () {
                     done('this one should have failed');
                 },
@@ -60,7 +57,7 @@ describe('client', function () {
                     reason.message.should.equals('Unexpected token o');
                     done();
                 };
-            api._parseResponse(err, body, response, method, resolve, reject);
+            api._parseResponse(err, body, response, resolve, reject);
         });
         it('yields an error if err is not empty', function (done) {
             var config =
@@ -70,7 +67,6 @@ describe('client', function () {
                 err = new Error('This is an error'),
                 body = '{"body": "body"}',
                 response = {statusCode: 200},
-                method = 'GET',
                 resolve = function () {
                     done('this one should have failed');
                 },
@@ -79,7 +75,7 @@ describe('client', function () {
                     reason.message.should.equals('This is an error');
                     done();
                 };
-            api._parseResponse(err, body, response, method, resolve, reject);
+            api._parseResponse(err, body, response, resolve, reject);
         });
     });
 });
