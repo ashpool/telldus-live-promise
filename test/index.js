@@ -1,3 +1,3 @@
-require('./client');
+require('./api');
 require('./devices');
 require('./sensors');

@@ -10,7 +10,7 @@ describe('client', function () {
             var config =
                 {},
                 telldus = require('../lib'),
-                client = telldus.Client(config),
+                api = telldus.API(config),
                 err = null,
                 body = '{"body" : "body"}',
                 response = {statusCode: 200},
@@ -22,13 +22,13 @@ describe('client', function () {
                 reject = function (reason) {
                     done(reason);
                 };
-            client._parseResponse(err, body, response, method, resolve, reject);
+            api._parseResponse(err, body, response, method, resolve, reject);
         });
         it('response code other than 200 yield an error', function (done) {
             var config =
                 {},
                 telldus = require('../lib'),
-                client = telldus.Client(config),
+                api = telldus.API(config),
                 err = null,
                 body = '{"body" : "body"}',
                 response = {statusCode: 404},
@@ -41,13 +41,13 @@ describe('client', function () {
                     reason.message.should.equals('Got unexpected response code 404');
                     done();
                 };
-            client._parseResponse(err, body, response, method, resolve, reject);
+            api._parseResponse(err, body, response, method, resolve, reject);
         });
         it('broken body yields an error', function (done) {
             var config =
                 {},
                 telldus = require('../lib'),
-                client = telldus.Client(config),
+                api = telldus.API(config),
                 err = null,
                 body = {body: 'this is not proper json'},
                 response = {statusCode: 200},
@@ -60,13 +60,13 @@ describe('client', function () {
                     reason.message.should.equals('Unexpected token o');
                     done();
                 };
-            client._parseResponse(err, body, response, method, resolve, reject);
+            api._parseResponse(err, body, response, method, resolve, reject);
         });
         it('yields an error if err is not empty', function (done) {
             var config =
                 {},
                 telldus = require('../lib'),
-                client = telldus.Client(config),
+                api = telldus.API(config),
                 err = new Error('This is an error'),
                 body = '{"body": "body"}',
                 response = {statusCode: 200},
@@ -79,7 +79,7 @@ describe('client', function () {
                     reason.message.should.equals('This is an error');
                     done();
                 };
-            client._parseResponse(err, body, response, method, resolve, reject);
+            api._parseResponse(err, body, response, method, resolve, reject);
         });
     });
 });

@@ -41,14 +41,14 @@ describe('sensors', function () {
     describe('#getSensors()', function () {
         describe('success', function () {
             it('returns an array of sensors - if everything works fine', function (done) {
-                var client = {
+                var api = {
                         request: function invoke () {
                             return new RSVP.Promise(function (resolve) {
                                 resolve(sensorsResult);
                             });
                         }
                     },
-                    sensors = require('../lib').Sensors(client);
+                    sensors = require('../lib').Sensors(api);
                 sensors.getSensors().then(function (result) {
                     result.should.equal(sensorsResult.sensor);
                     done();
@@ -59,14 +59,14 @@ describe('sensors', function () {
         });
         describe('failure', function () {
             it('forwards error message', function (done) {
-                var client = {
+                var api = {
                         request: function invoke () {
                             return new RSVP.Promise(function (resolve, reject) {
                                 reject('failure');
                             });
                         }
                     },
-                    sensors = require('../lib').Sensors(client);
+                    sensors = require('../lib').Sensors(api);
                 sensors.getSensors().then(function () {
                     done('this call should fail');
                 }).catch(function (reason) {
