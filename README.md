@@ -12,13 +12,15 @@ You will need:
 
 ## Install
 
-``npm install telldus-live-promise``
+```bash
+npm install telldus-live-promise
+```
 
 ## API
 
 ### Setup
 
-```
+```Javascript
 var config = {
   telldusPublicKey: "...",
   telldusPrivateKey: "...",
@@ -34,7 +36,7 @@ devices = telldus.Devices(api);
 ### Sensors
 
 #### Read values from all sensors
-```
+```bash
 sensors.getSensors().then(sensors.getSensorInfos).then(<do something useful>).catch(logger.error);
 ```
 
@@ -42,13 +44,11 @@ sensors.getSensors().then(sensors.getSensorInfos).then(<do something useful>).ca
 
 #### Turn off every device
 
-```
+```Javascript
 devices.getDevices().then(function(sensors){
 	sensors.map(devices.turnOff);
 });
 ```
-
-_This project draws inspiration from [node-telldus-live](https://github.com/TheThingSystem/node-telldus-live)_
 
 [npm-url]: https://npmjs.org/package/telldus-live-promise
 [downloads-image]: http://img.shields.io/npm/dm/telldus-live-promise.svg
