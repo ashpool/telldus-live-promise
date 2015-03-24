@@ -1,7 +1,11 @@
 /*jshint undef:false */
 var RSVP = require('rsvp'),
+    chaiAsPromised = require('chai-as-promised'),
     chai = require('chai');
+
 chai.should();
+expect = chai.expect;
+chai.use(chaiAsPromised);
 
 var devicesResult = [
     {
@@ -57,30 +61,20 @@ describe('devices', function () {
                         }
                     },
                     devices = require('../lib').Devices(api);
-                devices.getDevices().then(function (result) {
-                    result.should.equal(devicesResult);
-                    done();
-                }).catch(function (reason) {
-                    done(reason);
-                });
+                devices.getDevices().should.eventually.equal(devicesResult).notify(done);
             });
         });
         describe('failure', function () {
-            it('forwards error message', function (done) {
+            it('rejects with an Error', function (done) {
                 var api = {
                         get: function invoke () {
                             return new RSVP.Promise(function (resolve, reject) {
-                                reject('failure');
+                                reject(new Error('failure'));
                             });
                         }
                     },
                     devices = require('../lib').Devices(api);
-                devices.getDevices().then(function () {
-                    done('this call should fail');
-                }).catch(function (reason) {
-                    reason.should.equal('failure');
-                    done();
-                });
+                devices.getDevices().should.be.rejectedWith(Error).notify(done);
             });
         });
     });

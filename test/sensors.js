@@ -1,7 +1,11 @@
 /*jshint undef:false */
 var RSVP = require('rsvp'),
+    chaiAsPromised = require('chai-as-promised'),
     chai = require('chai');
+
 chai.should();
+expect = chai.expect;
+chai.use(chaiAsPromised);
 
 const sensorsResult = [{
     id: '2813567',
@@ -47,30 +51,20 @@ describe('sensors', function () {
                         }
                     },
                     sensors = require('../lib').Sensors(api);
-                sensors.getSensors().then(function (result) {
-                    result.should.equal(sensorsResult);
-                    done();
-                }).catch(function (reason) {
-                    done(reason);
-                });
+                sensors.getSensors().should.eventually.equal(sensorsResult).notify(done);
             });
         });
         describe('failure', function () {
-            it('forwards error message', function (done) {
+            it('rejects with an Error', function (done) {
                 var api = {
                         get: function invoke () {
                             return new RSVP.Promise(function (resolve, reject) {
-                                reject('failure');
+                                reject(new Error('failure'));
                             });
                         }
                     },
                     sensors = require('../lib').Sensors(api);
-                sensors.getSensors().then(function () {
-                    done('this call should fail');
-                }).catch(function (reason) {
-                    reason.should.equal('failure');
-                    done();
-                });
+                sensors.getSensors().should.be.rejectedWith(Error).notify(done);
             });
         });
     });
