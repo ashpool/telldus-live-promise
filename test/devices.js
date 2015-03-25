@@ -80,7 +80,7 @@ describe('devices', function () {
     });
     describe('#turnOn', function () {
         var success = {status: 'success'};
-        it('fuu', function (done) {
+        it('takes object {id: "anId""}) as argument', function (done) {
             var api = {
                     request: function invoke () {
                         return new RSVP.Promise(function (resolve) {
@@ -90,6 +90,42 @@ describe('devices', function () {
                 },
                 devices = require('../lib').Devices(api);
             devices.turnOn({id: 'anId'}).should.eventually.equal(success).notify(done);
+        });
+        it('takes string id as argument', function (done) {
+            var api = {
+                    request: function invoke () {
+                        return new RSVP.Promise(function (resolve) {
+                            resolve(success);
+                        });
+                    }
+                },
+                devices = require('../lib').Devices(api);
+            devices.turnOn('anId').should.eventually.equal(success).notify(done);
+        });
+    });
+    describe('#turnOff', function () {
+        var success = {status: 'success'};
+        it('takes object {id: "anId""}) as argument', function (done) {
+            var api = {
+                    request: function invoke () {
+                        return new RSVP.Promise(function (resolve) {
+                            resolve(success);
+                        });
+                    }
+                },
+                devices = require('../lib').Devices(api);
+            devices.turnOff({id: 'anId'}).should.eventually.equal(success).notify(done);
+        });
+        it('takes string id as argument', function (done) {
+            var api = {
+                    request: function invoke () {
+                        return new RSVP.Promise(function (resolve) {
+                            resolve(success);
+                        });
+                    }
+                },
+                devices = require('../lib').Devices(api);
+            devices.turnOff('anId').should.eventually.equal(success).notify(done);
         });
     });
 });
