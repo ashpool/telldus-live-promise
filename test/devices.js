@@ -52,7 +52,7 @@ var devicesResult = [
 describe('devices', function () {
     describe('#getDevices()', function () {
         describe('success', function () {
-            it('returns an array of sensors - if everything works fine', function (done) {
+            it('returns an array of devices', function (done) {
                 var api = {
                         get: function invoke () {
                             return new RSVP.Promise(function (resolve) {
