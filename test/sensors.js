@@ -100,5 +100,18 @@ describe('sensors', function () {
                 sensors.getSensorInfo({id: '3120422'}).should.eventually.equal(sensorInfoResult).notify(done);
             });
         });
+        describe('failure', function () {
+            it('will silently ignore errors and return an empty array', function (done) {
+                var api = {
+                        request: function invoke () {
+                            return new RSVP.Promise(function (resolve, reject) {
+                                reject(new Error('failure'));
+                            });
+                        }
+                    },
+                    sensors = require('../lib').Sensors(api);
+                sensors.getSensorInfos([{id: '12345'}, {id: '54321'}]).should.eventually.deep.equal([]).notify(done);
+            });
+        });
     });
 });
