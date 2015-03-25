@@ -78,4 +78,18 @@ describe('devices', function () {
             });
         });
     });
+    describe('#turnOn', function () {
+        var success = {status: 'success'};
+        it('fuu', function (done) {
+            var api = {
+                    request: function invoke () {
+                        return new RSVP.Promise(function (resolve) {
+                            resolve(success);
+                        });
+                    }
+                },
+                devices = require('../lib').Devices(api);
+            devices.turnOn({id: 'anId'}).should.eventually.equal(success).notify(done);
+        });
+    });
 });
