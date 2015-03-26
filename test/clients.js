@@ -4,7 +4,6 @@ var RSVP = require('rsvp'),
     chai = require('chai');
 
 chai.should();
-expect = chai.expect;
 chai.use(chaiAsPromised);
 
 var clientsResult =
