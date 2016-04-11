@@ -1,9 +1,13 @@
 {
   "name": "telldus-live-promise",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A node.js module to interface with Telldus Live API promise style",
   "main": "lib",
   "author": "Magnus Ljadas <magnus.ljadas@gmail.com> (https://github.com/ashpool)",
+  "contributors": {
+    "name": "Magnus Ljadas <magnus.ljadas@gmail.com> (https://github.com/ashpool)"
+  },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/ashpool/telldus-live-promise.git"
@@ -11,6 +15,7 @@
   "bugs": {
     "url": "https://github.com/ashpool/telldus-live-promise/issues"
   },
+  "homepage": "https://github.com/ashpool/telldus-live-promise",
   "scripts": {
     "test": "gulp test"
   },
