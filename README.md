@@ -37,7 +37,7 @@ devices = telldus.Devices(api);
 
 #### Read values from all sensors
 ```bash
-sensors.getSensors().then(sensors.getSensorInfos).then(<do something useful>).catch(logger.error);
+sensors.list().then(<do something useful>).catch(<log error>);
 ```
 
 ### Devices
@@ -45,7 +45,7 @@ sensors.getSensors().then(sensors.getSensorInfos).then(<do something useful>).ca
 #### Turn off every device
 
 ```Javascript
-devices.getDevices().then(function(sensors){
+devices.list().then(function(sensors){
 	sensors.map(devices.turnOff);
 });
 ```
