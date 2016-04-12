@@ -1,6 +1,5 @@
 /*jshint undef:false */
-var RSVP = require('rsvp'),
-    chaiAsPromised = require('chai-as-promised'),
+var chaiAsPromised = require('chai-as-promised'),
     chai = require('chai');
 
 chai.should();
@@ -25,26 +24,26 @@ describe('clients', function () {
             it('returns an array of clients', function (done) {
                 var api = {
                         get: function invoke () {
-                            return new RSVP.Promise(function (resolve) {
+                            return new Promise(function (resolve) {
                                 resolve(clientsResult);
                             });
                         }
                     },
                     clients = require('../lib').Clients(api);
-                clients.getClients().should.eventually.equal(clientsResult).notify(done);
+                clients.list().should.eventually.equal(clientsResult).notify(done);
             });
         });
         describe('failure', function () {
             it('rejects with an Error', function (done) {
                 var api = {
                         get: function invoke () {
-                            return new RSVP.Promise(function (resolve, reject) {
+                            return new Promise(function (resolve, reject) {
                                 reject(new Error('failure'));
                             });
                         }
                     },
                     clients = require('../lib').Clients(api);
-                clients.getClients().should.be.rejectedWith(Error).notify(done);
+                clients.list().should.be.rejectedWith(Error).notify(done);
             });
         });
     });

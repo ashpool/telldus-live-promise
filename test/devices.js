@@ -1,6 +1,5 @@
 /*jshint undef:false */
-var RSVP = require('rsvp'),
-    chaiAsPromised = require('chai-as-promised'),
+var chaiAsPromised = require('chai-as-promised'),
     chai = require('chai');
 
 chai.should();
@@ -50,31 +49,31 @@ var devicesResult = [
     }];
 
 describe('devices', function () {
-    describe('#getDevices()', function () {
+    describe('#list()', function () {
         describe('success', function () {
             it('returns an array of devices', function (done) {
                 var api = {
                         get: function invoke () {
-                            return new RSVP.Promise(function (resolve) {
+                            return new Promise(function (resolve) {
                                 resolve(devicesResult);
                             });
                         }
                     },
                     devices = require('../lib').Devices(api);
-                devices.getDevices().should.eventually.equal(devicesResult).notify(done);
+                devices.list().should.eventually.equal(devicesResult).notify(done);
             });
         });
         describe('failure', function () {
             it('rejects with an Error', function (done) {
                 var api = {
                         get: function invoke () {
-                            return new RSVP.Promise(function (resolve, reject) {
+                            return new Promise(function (resolve, reject) {
                                 reject(new Error('failure'));
                             });
                         }
                     },
                     devices = require('../lib').Devices(api);
-                devices.getDevices().should.be.rejectedWith(Error).notify(done);
+                devices.list().should.be.rejectedWith(Error).notify(done);
             });
         });
     });
@@ -83,7 +82,7 @@ describe('devices', function () {
         it('takes object {id: "anId""}) as argument', function (done) {
             var api = {
                     request: function invoke () {
-                        return new RSVP.Promise(function (resolve) {
+                        return new Promise(function (resolve) {
                             resolve(success);
                         });
                     }
@@ -94,7 +93,7 @@ describe('devices', function () {
         it('takes string id as argument', function (done) {
             var api = {
                     request: function invoke () {
-                        return new RSVP.Promise(function (resolve) {
+                        return new Promise(function (resolve) {
                             resolve(success);
                         });
                     }
@@ -108,7 +107,7 @@ describe('devices', function () {
         it('takes object {id: "anId""}) as argument', function (done) {
             var api = {
                     request: function invoke () {
-                        return new RSVP.Promise(function (resolve) {
+                        return new Promise(function (resolve) {
                             resolve(success);
                         });
                     }
@@ -119,7 +118,7 @@ describe('devices', function () {
         it('takes string id as argument', function (done) {
             var api = {
                     request: function invoke () {
-                        return new RSVP.Promise(function (resolve) {
+                        return new Promise(function (resolve) {
                             resolve(success);
                         });
                     }
