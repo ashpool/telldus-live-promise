@@ -54,7 +54,9 @@
     "<",
     "<="
   ],
-  "disallowSpaceBeforeBinaryOperators": [","],
+  "disallowSpaceBeforeBinaryOperators": [
+    ","
+  ],
   "disallowSpaceAfterPrefixUnaryOperators": [
     "++",
     "--",
@@ -97,10 +99,14 @@
     "<",
     "<="
   ],
-  "disallowKeywords": ["with"],
+  "disallowKeywords": [
+    "with"
+  ],
   "disallowMultipleLineBreaks": true,
   "validateLineBreaks": "LF",
   "disallowMixedSpacesAndTabs": true,
   "disallowTrailingComma": true,
-  "disallowKeywordsOnNewLine": ["else"]
+  "disallowKeywordsOnNewLine": [
+    "else"
+  ]
 }
