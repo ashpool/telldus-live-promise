@@ -1,6 +1,6 @@
 {
   "name": "telldus-live-promise",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A node.js module to interface with Telldus Live API promise style",
   "main": "lib",
   "author": "Magnus Ljadas <magnus.ljadas@gmail.com> (https://github.com/ashpool)",
