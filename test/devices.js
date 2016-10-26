@@ -102,8 +102,38 @@ describe('devices', function () {
       devices.turnOn('anId').should.eventually.equal(success).notify(done);
     });
   });
-  describe('#turnOff', function () {
+  describe('#history', function () {
     var success = {status: 'success'};
+    it('returns device history', function (done) {
+      var api = {
+          request: function invoke() {
+            return new Promise(function (resolve) {
+              resolve(success);
+            });
+          }
+        },
+        devices = require('../lib').Devices(api);
+      devices.history({id: 'anId'}, 1400471506, 1479471506).should.eventually.equal(success).notify(done);
+    })
+  });
+  describe('#turnOff', function () {
+    var success = {
+      status: {
+        'history': [{
+          'ts': 1477467846,
+          'state': 1,
+          'stateValue': 0,
+          'origin': 'Incoming signal',
+          'successStatus': 0
+        }, {
+          'ts': 1477467846,
+          'state': 1,
+          'stateValue': 0,
+          'origin': 'Incoming signal',
+          'successStatus': 0
+        }]
+      }
+    };
     it('takes object {id: "anId""}) as argument', function (done) {
       var api = {
           request: function invoke() {
