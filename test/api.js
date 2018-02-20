@@ -54,7 +54,7 @@ describe('client', function () {
         },
         reject = function (reason) {
           reason.name.should.equals('SyntaxError');
-          reason.message.should.equals('Unexpected token o');
+          reason.message.should.equals('Unexpected token o in JSON at position 1');
           done();
         };
       api._parseResponse(err, body, response, resolve, reject);
