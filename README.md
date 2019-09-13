@@ -1,7 +1,8 @@
 # telldus-live-promise
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Actions Status](https://github.com/ashpool/telldus-live-promise/workflows/Node.js%20Package/badge.svg)](https://github.com/ashpool/telldus-live/actions) [![Actions Status](https://github.com/ashpool/telldus-live/workflows/Node%20CI/badge.svg)](https://github.com/ashpool/telldus-live/actions)
 
-A node.js module to interface with the [Telldus Live API](http://api.telldus.com) [promise style](https://promisesaplus.com).
+
+A node.js module to interface with the [Telldus Live API](http://api.telldus.com)
 
 ## Before Starting
 You will need:
