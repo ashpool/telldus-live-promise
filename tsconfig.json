@@ -9,6 +9,6 @@
     "target": "es6"
   },
   "include": [
-    "src/**/*"
+    "lib/**/*"
   ]
 }
