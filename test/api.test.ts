@@ -5,7 +5,7 @@ describe('client', () => {
   describe('#_parseResponse', () => {
     it('returns the result as JSON.parse(body);', (done) => {
       const config = {};
-        const telldus = require('../lib');
+        const telldus = require('../src');
         const api = telldus.API(config);
         const err = null;
         const body = '{"body" : "body"}';
@@ -20,7 +20,7 @@ describe('client', () => {
     it('response code other than 200 yield an error', (done) => {
       var config =
         {},
-        telldus = require('../lib'),
+        telldus = require('../src'),
         api = telldus.API(config),
         err = null,
         body = '{"body" : "body"}',
@@ -38,7 +38,7 @@ describe('client', () => {
     it('broken body yields an error', function (done) {
       var config =
         {},
-        telldus = require('../lib'),
+        telldus = require('../src'),
         api = telldus.API(config),
         err = null,
         body = {body: 'this is not proper json'},
@@ -56,7 +56,7 @@ describe('client', () => {
     it('yields an error if err is not empty', function (done) {
       var config =
         {},
-        telldus = require('../lib'),
+        telldus = require('../src'),
         api = telldus.API(config),
         err = new Error('This is an error'),
         body = '{"body": "body"}',

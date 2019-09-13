@@ -28,7 +28,7 @@ describe('clients', function () {
               });
             }
           },
-          clients = require('../lib').Clients(api);
+          clients = require('../src').Clients(api);
         clients.list().should.eventually.equal(clientsResult).notify(done);
       });
     });
@@ -41,7 +41,7 @@ describe('clients', function () {
               });
             }
           },
-          clients = require('../lib').Clients(api);
+          clients = require('../src').Clients(api);
         clients.list().should.be.rejectedWith(Error).notify(done);
       });
     });

@@ -57,7 +57,7 @@ describe('devices', function () {
               });
             }
           },
-          devices = require('../lib').Devices(api);
+          devices = require('../src').Devices(api);
         devices.list().should.eventually.equal(devicesResult).notify(done);
       });
     });
@@ -70,7 +70,7 @@ describe('devices', function () {
               });
             }
           },
-          devices = require('../lib').Devices(api);
+          devices = require('../src').Devices(api);
         devices.list().should.be.rejectedWith(Error).notify(done);
       });
     });
@@ -85,7 +85,7 @@ describe('devices', function () {
             });
           }
         },
-        devices = require('../lib').Devices(api);
+        devices = require('../src').Devices(api);
       devices.turnOn({id: 'anId'}).should.eventually.equal(success).notify(done);
     });
     it('takes string id as argument', function (done) {
@@ -96,7 +96,7 @@ describe('devices', function () {
             });
           }
         },
-        devices = require('../lib').Devices(api);
+        devices = require('../src').Devices(api);
       devices.turnOn('anId').should.eventually.equal(success).notify(done);
     });
   });
@@ -110,7 +110,7 @@ describe('devices', function () {
             });
           }
         },
-        devices = require('../lib').Devices(api);
+        devices = require('../src').Devices(api);
       devices.history({id: 'anId'}, 1400471506, 1479471506).should.eventually.equal(success).notify(done);
     })
   });
@@ -140,7 +140,7 @@ describe('devices', function () {
             });
           }
         },
-        devices = require('../lib').Devices(api);
+        devices = require('../src').Devices(api);
       devices.turnOff({id: 'anId'}).should.eventually.equal(success).notify(done);
     });
     it('takes string id as argument', function (done) {
@@ -151,7 +151,7 @@ describe('devices', function () {
             });
           }
         },
-        devices = require('../lib').Devices(api);
+        devices = require('../src').Devices(api);
       devices.turnOff('anId').should.eventually.equal(success).notify(done);
     });
   });
