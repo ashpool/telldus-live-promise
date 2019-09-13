@@ -1,9 +1,10 @@
-var OAuth = require('oauth');
+import {ServerResponse} from "http";
+import OAuth from 'oauth';
 
 module.exports = function (config: any) {
-  var oauth = new OAuth.OAuth(null, null, config.telldusPublicKey, config.telldusPrivateKey, '1.0', null, 'HMAC-SHA1');
+  const oauth = new OAuth.OAuth('https://api.telldus.com/oauth/requestToken','https://api.telldus.com/oauth/authorize', config.telldusPublicKey, config.telldusPrivateKey, '1.0', null, 'HMAC-SHA1');
 
-  function _parseResponse(err: any, body: any, response: any, resolve: any, reject: any) {
+  function _parseResponse(err: Error | undefined, body: any, response: ServerResponse, resolve: Function, reject: Function) {
     try {
       if (!!err) {
         return reject(err);
@@ -13,8 +14,8 @@ module.exports = function (config: any) {
       } else {
         resolve(JSON.parse(body));
       }
-    } catch (ex) {
-      return reject(ex);
+    } catch (reason) {
+      return reject(reason);
     }
   }
 
@@ -24,22 +25,20 @@ module.exports = function (config: any) {
    * @param json optional
    * @returns {Promise}
    */
-  function request(path: any, json: any) {
-    return new Promise(function (resolve, reject) {
-      oauth._performSecureRequest(config.telldusToken,
-        config.telldusTokenSecret,
-        'GET',
+  function request(path: string) {
+    return new Promise((resolve: Function, reject: Function) => {
+      oauth.get(
         'https://api.telldus.com/json' + path,
-        null,
-        json,
-        !!json ? 'application/json' : null, function (err: any, body: any, response: any) {
+        config.telldusToken,
+        config.telldusTokenSecret,
+        function (err: any, body: any, response: any){
           _parseResponse(err, body, response, resolve, reject);
         });
     });
   }
 
-  function get(path: any, key: any) {
-    return new Promise(function (resolve, reject) {
+  function get(path: string, key: string) {
+    return new Promise(function (resolve: Function, reject: Function) {
       // @ts-ignore
       return request(path).then(function (result: any) {
         return resolve(result[key]);
