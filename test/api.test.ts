@@ -1,32 +1,26 @@
-/*jshint undef:false */
-/*jshint maxparams:false */
-/*jshint unused:false */
-var chai = require('chai');
+import * as chai from "chai";
 chai.should();
 
-describe('client', function () {
-  describe('#_parseResponse', function () {
-    it('returns the result as JSON.parse(body);', function (done) {
-      var config =
-        {},
-        telldus = require('../lib'),
-        api = telldus.API(config),
-        err = null,
-        body = '{"body" : "body"}',
-        response = {statusCode: 200},
-        resolve = function (value) {
+describe('client', () => {
+  describe('#_parseResponse', () => {
+    it('returns the result as JSON.parse(body);', (done) => {
+      const config = {};
+        const telldus = require('../src');
+        const api = telldus.API(config);
+        const err = null;
+        const body = '{"body" : "body"}';
+        const response = {statusCode: 200},
+        resolve = (value: any) => {
           value.body.should.equal('body');
           done();
         },
-        reject = function (reason) {
-          done(reason);
-        };
+        reject = (reason: any) => done(reason);
       api._parseResponse(err, body, response, resolve, reject);
     });
-    it('response code other than 200 yield an error', function (done) {
+    it('response code other than 200 yield an error', (done) => {
       var config =
         {},
-        telldus = require('../lib'),
+        telldus = require('../src'),
         api = telldus.API(config),
         err = null,
         body = '{"body" : "body"}',
@@ -34,7 +28,7 @@ describe('client', function () {
         resolve = function () {
           done('this one should have failed');
         },
-        reject = function (reason) {
+        reject = function (reason: any) {
           reason.name.should.equals('Error');
           reason.message.should.equals('Got unexpected response code 404');
           done();
@@ -44,7 +38,7 @@ describe('client', function () {
     it('broken body yields an error', function (done) {
       var config =
         {},
-        telldus = require('../lib'),
+        telldus = require('../src'),
         api = telldus.API(config),
         err = null,
         body = {body: 'this is not proper json'},
@@ -52,7 +46,7 @@ describe('client', function () {
         resolve = function () {
           done('this one should have failed');
         },
-        reject = function (reason) {
+        reject = function (reason: any) {
           reason.name.should.equals('SyntaxError');
           reason.message.should.equals('Unexpected token o in JSON at position 1');
           done();
@@ -62,7 +56,7 @@ describe('client', function () {
     it('yields an error if err is not empty', function (done) {
       var config =
         {},
-        telldus = require('../lib'),
+        telldus = require('../src'),
         api = telldus.API(config),
         err = new Error('This is an error'),
         body = '{"body": "body"}',
@@ -70,7 +64,7 @@ describe('client', function () {
         resolve = function () {
           done('this one should have failed');
         },
-        reject = function (reason) {
+        reject = function (reason: any) {
           reason.name.should.equals('Error');
           reason.message.should.equals('This is an error');
           done();

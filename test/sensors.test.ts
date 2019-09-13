@@ -1,9 +1,8 @@
 /*jshint undef:false */
-var chaiAsPromised = require('chai-as-promised'),
-  chai = require('chai');
+import chaiAsPromised from 'chai-as-promised';
+import * as chai from "chai";
 
 chai.should();
-expect = chai.expect;
 chai.use(chaiAsPromised);
 
 const sensorsResult =
@@ -67,7 +66,7 @@ describe('sensors', function () {
               });
             }
           },
-          sensors = require('../lib').Sensors(api);
+          sensors = require('../src').Sensors(api);
         sensors.list().should.eventually.equal(sensorsResult).notify(done);
       });
     });
@@ -80,7 +79,7 @@ describe('sensors', function () {
               });
             }
           },
-          sensors = require('../lib').Sensors(api);
+          sensors = require('../src').Sensors(api);
         sensors.list().should.be.rejectedWith(Error).notify(done);
       });
     });
@@ -95,7 +94,7 @@ describe('sensors', function () {
               });
             }
           },
-          sensors = require('../lib').Sensors(api);
+          sensors = require('../src').Sensors(api);
         sensors.info({id: '3120422'}).should.eventually.equal(sensorInfoResult).notify(done);
       });
     });

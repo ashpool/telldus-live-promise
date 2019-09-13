@@ -1,6 +1,5 @@
-/*jshint undef:false */
-var chaiAsPromised = require('chai-as-promised'),
-  chai = require('chai');
+import chaiAsPromised from 'chai-as-promised';
+import * as chai from "chai";
 
 chai.should();
 chai.use(chaiAsPromised);
@@ -29,7 +28,7 @@ describe('clients', function () {
               });
             }
           },
-          clients = require('../lib').Clients(api);
+          clients = require('../src').Clients(api);
         clients.list().should.eventually.equal(clientsResult).notify(done);
       });
     });
@@ -42,7 +41,7 @@ describe('clients', function () {
               });
             }
           },
-          clients = require('../lib').Clients(api);
+          clients = require('../src').Clients(api);
         clients.list().should.be.rejectedWith(Error).notify(done);
       });
     });

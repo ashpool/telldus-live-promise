@@ -1,12 +1,12 @@
 var querystring = require('querystring');
 
-module.exports = function (api) {
+module.exports = function (api: any) {
   /**
    * Returns the actual sensor values
    * @param sensor {id: <sensor id>}
    * @returns {Promise} sensor info
    */
-  function info(sensor) {
+  function info(sensor: any) {
     return api.request('/sensor/info?' + querystring.stringify({id: sensor.id}));
   }
 
@@ -15,7 +15,7 @@ module.exports = function (api) {
    * @param params Set includeValues=1 to include the last value for each sensor
    * @returns {Promise} list of all sensors
    */
-  function list(params) {
+  function list(params: any) {
     params = params || {includeValues: 1};
     return api.request('/sensors/list?includeValues=' + params.includeValues);
   }
