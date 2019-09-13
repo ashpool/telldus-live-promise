@@ -1,6 +1,5 @@
-/*jshint undef:false */
-var chaiAsPromised = require('chai-as-promised'),
-  chai = require('chai');
+import chaiAsPromised from 'chai-as-promised';
+import * as chai from "chai";
 
 chai.should();
 chai.use(chaiAsPromised);

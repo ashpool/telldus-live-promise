@@ -1,9 +1,8 @@
 /*jshint undef:false */
-var chaiAsPromised = require('chai-as-promised'),
-  chai = require('chai');
+import chaiAsPromised from 'chai-as-promised';
+import * as chai from "chai";
 
 chai.should();
-expect = chai.expect;
 chai.use(chaiAsPromised);
 
 const sensorsResult =

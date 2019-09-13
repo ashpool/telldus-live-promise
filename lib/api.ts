@@ -1,9 +1,9 @@
 var OAuth = require('oauth');
 
-module.exports = function (config) {
+module.exports = function (config: any) {
   var oauth = new OAuth.OAuth(null, null, config.telldusPublicKey, config.telldusPrivateKey, '1.0', null, 'HMAC-SHA1');
 
-  function _parseResponse(err, body, response, resolve, reject) {
+  function _parseResponse(err: any, body: any, response: any, resolve: any, reject: any) {
     try {
       if (!!err) {
         return reject(err);
@@ -24,7 +24,7 @@ module.exports = function (config) {
    * @param json optional
    * @returns {Promise}
    */
-  function request(path, json) {
+  function request(path: any, json: any) {
     return new Promise(function (resolve, reject) {
       oauth._performSecureRequest(config.telldusToken,
         config.telldusTokenSecret,
@@ -32,17 +32,18 @@ module.exports = function (config) {
         'https://api.telldus.com/json' + path,
         null,
         json,
-        !!json ? 'application/json' : null, function (err, body, response) {
+        !!json ? 'application/json' : null, function (err: any, body: any, response: any) {
           _parseResponse(err, body, response, resolve, reject);
         });
     });
   }
 
-  function get(path, key) {
+  function get(path: any, key: any) {
     return new Promise(function (resolve, reject) {
-      return request(path).then(function (result) {
-        resolve(result[key]);
-      }, function (reason) {
+      // @ts-ignore
+      return request(path).then(function (result: any) {
+        return resolve(result[key]);
+      }, function (reason: any) {
         reject(reason);
       });
     });

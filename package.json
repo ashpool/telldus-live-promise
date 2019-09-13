@@ -24,7 +24,7 @@
   "scripts": {
     "build": "tsc",
     "eslint:fix": "eslint **/*.ts --fix",
-    "test": "eslint **/*.ts && mocha -r ts-node/register test/**/*test.ts",
+    "test": "eslint **/*.ts && mocha -r ts-node/register test/**/*.test.ts",
     "prettier": "prettier --write '{*/**/*,*}.{js,md,json,d.ts}'",
     "precommit": "lint-staged"
   },
