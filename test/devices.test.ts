@@ -4,7 +4,7 @@ import * as chai from "chai";
 chai.should();
 chai.use(chaiAsPromised);
 
-var devicesResult = [
+const devicesResult = [
   {
     id: '240000',
     clientDeviceId: '14',
@@ -50,72 +50,72 @@ describe('devices', function () {
   describe('#list()', function () {
     describe('success', function () {
       it('returns an array of devices', function (done) {
-        var api = {
+        const api = {
             get: function invoke() {
               return new Promise(function (resolve) {
                 resolve(devicesResult);
               });
             }
-          },
-          devices = require('../src').Devices(api);
+          };
+        const devices = require('../src').Devices(api);
         devices.list().should.eventually.equal(devicesResult).notify(done);
       });
     });
     describe('failure', function () {
       it('rejects with an Error', function (done) {
-        var api = {
+        const api = {
             get: function invoke() {
               return new Promise(function (resolve, reject) {
                 reject(new Error('failure'));
               });
             }
-          },
-          devices = require('../src').Devices(api);
+          };
+        const devices = require('../src').Devices(api);
         devices.list().should.be.rejectedWith(Error).notify(done);
       });
     });
   });
   describe('#turnOn', function () {
-    var success = {status: 'success'};
+    const success = {status: 'success'};
     it('takes object {id: "anId""}) as argument', function (done) {
-      var api = {
+      const api = {
           request: function invoke() {
             return new Promise(function (resolve) {
               resolve(success);
             });
           }
-        },
-        devices = require('../src').Devices(api);
+        };
+      const devices = require('../src').Devices(api);
       devices.turnOn({id: 'anId'}).should.eventually.equal(success).notify(done);
     });
     it('takes string id as argument', function (done) {
-      var api = {
+      const api = {
           request: function invoke() {
             return new Promise(function (resolve) {
               resolve(success);
             });
           }
-        },
-        devices = require('../src').Devices(api);
+        };
+      const devices = require('../src').Devices(api);
       devices.turnOn('anId').should.eventually.equal(success).notify(done);
     });
   });
   describe('#history', function () {
-    var success = {status: 'success'};
+    const success = {status: 'success'};
     it('returns device history', function (done) {
-      var api = {
+      const api = {
           request: function invoke() {
             return new Promise(function (resolve) {
               resolve(success);
             });
           }
-        },
-        devices = require('../src').Devices(api);
+        };
+      const devices = require('../src').Devices(api);
       devices.history({id: 'anId'}, 1400471506, 1479471506).should.eventually.equal(success).notify(done);
     })
   });
   describe('#turnOff', function () {
-    var success = {
+    const success = {
       status: {
         'history': [{
           'ts': 1477467846,
@@ -133,25 +133,25 @@ describe('devices', function () {
       }
     };
     it('takes object {id: "anId""}) as argument', function (done) {
-      var api = {
+      const api = {
           request: function invoke() {
             return new Promise(function (resolve) {
               resolve(success);
             });
           }
-        },
-        devices = require('../src').Devices(api);
+        };
+      const devices = require('../src').Devices(api);
       devices.turnOff({id: 'anId'}).should.eventually.equal(success).notify(done);
     });
     it('takes string id as argument', function (done) {
-      var api = {
+      const api = {
           request: function invoke() {
             return new Promise(function (resolve) {
               resolve(success);
             });
           }
-        },
-        devices = require('../src').Devices(api);
+        };
+      const devices = require('../src').Devices(api);
       devices.turnOff('anId').should.eventually.equal(success).notify(done);
     });
   });

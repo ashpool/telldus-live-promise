@@ -1,4 +1,3 @@
-/*jshint undef:false */
 import chaiAsPromised from 'chai-as-promised';
 import * as chai from "chai";
 
@@ -59,27 +58,27 @@ describe('sensors', function () {
   describe('#list()', function () {
     describe('success', function () {
       it('returns an array of sensors', function (done) {
-        var api = {
+        const api = {
             request: function invoke() {
               return new Promise(function (resolve) {
                 resolve(sensorsResult);
               });
             }
-          },
-          sensors = require('../src').Sensors(api);
+          };
+        const sensors = require('../src').Sensors(api);
         sensors.list().should.eventually.equal(sensorsResult).notify(done);
       });
     });
     describe('failure', function () {
       it('rejects with an Error', function (done) {
-        var api = {
+        const api = {
             request: function invoke() {
               return new Promise(function (resolve, reject) {
                 reject(new Error('failure'));
               });
             }
-          },
-          sensors = require('../src').Sensors(api);
+          };
+        const sensors = require('../src').Sensors(api);
         sensors.list().should.be.rejectedWith(Error).notify(done);
       });
     });
@@ -87,14 +86,14 @@ describe('sensors', function () {
   describe('#info', function () {
     describe('success', function () {
       it('returns sensor info', function (done) {
-        var api = {
+        const api = {
             request: function invoke() {
               return new Promise(function (resolve) {
                 resolve(sensorInfoResult);
               });
             }
-          },
-          sensors = require('../src').Sensors(api);
+          };
+        const sensors = require('../src').Sensors(api);
         sensors.info({id: '3120422'}).should.eventually.equal(sensorInfoResult).notify(done);
       });
     });
