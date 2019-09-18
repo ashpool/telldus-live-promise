@@ -1,7 +1,7 @@
 import {ServerResponse} from "http";
 import OAuth from 'oauth';
 
-export default class API {
+export default class Telldus {
 
   config: any;
 

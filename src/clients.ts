@@ -1,9 +1,9 @@
-import API from "./api";
+import Telldus from "./telldus";
 
 export default class Clients {
-  api: API;
+  api: Telldus;
 
-constructor(api: API) {
+constructor(api: Telldus) {
   this.api = api;
 }
   /**

@@ -1,6 +1,6 @@
 import * as chai from "chai";
 import {ServerResponse} from "http";
-import {API} from '../src';
+import {Telldus} from '../src';
 
 chai.should();
 
@@ -8,7 +8,7 @@ describe('client', () => {
   describe('#_parseResponse', () => {
     it('returns the result as JSON.parse(body);', (done) => {
       const config = {};
-      const api = new API(config);
+      const api = new Telldus(config);
       const err = undefined;
       const body = '{"body" : "body"}';
       const response = {statusCode: 200} as ServerResponse;
@@ -21,7 +21,7 @@ describe('client', () => {
     });
     it('response code other than 200 yield an error', (done) => {
       const config = {};
-      const api = new API(config);
+      const api = new Telldus(config);
       const err = undefined;
       const body = '{"body" : "body"}';
       const response = {statusCode: 404} as ServerResponse;
@@ -35,7 +35,7 @@ describe('client', () => {
     });
     it('broken body yields an error', function (done) {
       const config = {};
-      const api = new API(config);
+      const api = new Telldus(config);
       const err = undefined;
       const body = {body: 'this is not proper json'};
       const response = {statusCode: 200} as ServerResponse;
@@ -51,7 +51,7 @@ describe('client', () => {
     });
     it('yields an error if err is not empty', function (done) {
       const config = {};
-      const api = new API(config);
+      const api = new Telldus(config);
       const err = new Error('This is an error');
       const body = '{"body": "body"}';
       const response = {statusCode: 200} as ServerResponse;

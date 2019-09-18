@@ -1,10 +1,10 @@
 import querystring from 'querystring';
-import API from "./api";
+import Telldus from "./telldus";
 
 export default class Sensors {
-  api: API;
+  api: Telldus;
 
-  constructor(api: API) {
+  constructor(api: Telldus) {
     this.api = api;
   }
   /**
