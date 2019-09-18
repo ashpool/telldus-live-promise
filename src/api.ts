@@ -4,7 +4,7 @@ import OAuth from 'oauth';
 module.exports = function (config: any) {
   const oauth = new OAuth.OAuth('https://api.telldus.com/oauth/requestToken','https://api.telldus.com/oauth/authorize', config.telldusPublicKey, config.telldusPrivateKey, '1.0', null, 'HMAC-SHA1');
 
-  function _parseResponse(err: Error | undefined, body: any, response: ServerResponse, resolve: Function, reject: Function) {
+  const _parseResponse = (err: Error | undefined, body: any, response: ServerResponse, resolve: Function, reject: Function) => {
     try {
       if (!!err) {
         return reject(err);
@@ -17,7 +17,7 @@ module.exports = function (config: any) {
     } catch (reason) {
       return reject(reason);
     }
-  }
+  };
 
   /**
    * Performs a secure oauth request to Telldus API.
@@ -25,7 +25,7 @@ module.exports = function (config: any) {
    * @param json optional
    * @returns {Promise}
    */
-  function request(path: string) {
+  const request = (path: string) => {
     return new Promise((resolve: Function, reject: Function) => {
       oauth.get(
         'https://api.telldus.com/json' + path,
@@ -35,9 +35,9 @@ module.exports = function (config: any) {
           _parseResponse(err, body, response, resolve, reject);
         });
     });
-  }
+  };
 
-  function get(path: string, key: string) {
+  const get = (path: string, key: string) => {
     return new Promise(function (resolve: Function, reject: Function) {
       // @ts-ignore
       return request(path).then(function (result: any) {
@@ -46,7 +46,7 @@ module.exports = function (config: any) {
         reject(reason);
       });
     });
-  }
+  };
 
   return {
     get: get,
