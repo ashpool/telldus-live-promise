@@ -1,7 +1,9 @@
-export default class Clients {
-  api: any;
+import API from "./api";
 
-constructor(api: any) {
+export default class Clients {
+  api: API;
+
+constructor(api: API) {
   this.api = api;
 }
   /**

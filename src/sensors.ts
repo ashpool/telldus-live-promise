@@ -1,9 +1,10 @@
 import querystring from 'querystring';
+import API from "./api";
 
 export default class Sensors {
-  api: any;
+  api: API;
 
-  constructor(api: any) {
+  constructor(api: API) {
     this.api = api;
   }
   /**
