@@ -1,5 +1,6 @@
 import chaiAsPromised from 'chai-as-promised';
 import * as chai from "chai";
+import {Sensors} from '../src';
 
 chai.should();
 chai.use(chaiAsPromised);
@@ -65,7 +66,7 @@ describe('sensors', function () {
               });
             }
           };
-        const sensors = require('../src').Sensors(api);
+        const sensors = new Sensors(api);
         sensors.list().should.eventually.equal(sensorsResult).notify(done);
       });
     });
@@ -78,7 +79,7 @@ describe('sensors', function () {
               });
             }
           };
-        const sensors = require('../src').Sensors(api);
+        const sensors = new Sensors(api);
         sensors.list().should.be.rejectedWith(Error).notify(done);
       });
     });
@@ -93,7 +94,7 @@ describe('sensors', function () {
               });
             }
           };
-        const sensors = require('../src').Sensors(api);
+        const sensors = new Sensors(api);
         sensors.info({id: '3120422'}).should.eventually.equal(sensorInfoResult).notify(done);
       });
     });

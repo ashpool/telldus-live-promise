@@ -1,10 +1,18 @@
 import {ServerResponse} from "http";
 import OAuth from 'oauth';
 
-module.exports = function (config: any) {
-  const oauth = new OAuth.OAuth('https://api.telldus.com/oauth/requestToken','https://api.telldus.com/oauth/authorize', config.telldusPublicKey, config.telldusPrivateKey, '1.0', null, 'HMAC-SHA1');
+export default class API {
 
-  const _parseResponse = (err: Error | undefined, body: any, response: ServerResponse, resolve: Function, reject: Function) => {
+  config: any;
+
+  oauth: any;
+
+  constructor(config: any) {
+    this.config = config;
+    this.oauth = new OAuth.OAuth('https://api.telldus.com/oauth/requestToken','https://api.telldus.com/oauth/authorize', config.telldusPublicKey, config.telldusPrivateKey, '1.0', null, 'HMAC-SHA1');
+  }
+
+  _parseResponse = (err: Error | undefined, body: any, response: ServerResponse, resolve: Function, reject: Function) => {
     try {
       if (!!err) {
         return reject(err);
@@ -25,19 +33,20 @@ module.exports = function (config: any) {
    * @param json optional
    * @returns {Promise}
    */
-  const request = (path: string) => {
+  request = (path: string) => {
+    const that = this;
     return new Promise((resolve: Function, reject: Function) => {
-      oauth.get(
+      this.oauth.get(
         'https://api.telldus.com/json' + path,
-        config.telldusToken,
-        config.telldusTokenSecret,
+        this.config.telldusToken,
+        this.config.telldusTokenSecret,
         function (err: any, body: any, response: any){
-          _parseResponse(err, body, response, resolve, reject);
+          that._parseResponse(err, body, response, resolve, reject);
         });
     });
   };
 
-  const get = (path: string, key: string) => {
+  get = (path: string, key: string) => {
     return new Promise(function (resolve: Function, reject: Function) {
       // @ts-ignore
       return request(path).then(function (result: any) {
@@ -46,11 +55,5 @@ module.exports = function (config: any) {
         reject(reason);
       });
     });
-  };
-
-  return {
-    get: get,
-    request: request,
-    _parseResponse: _parseResponse
   };
 };

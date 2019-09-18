@@ -1,25 +1,31 @@
 import querystring from 'querystring';
 
-module.exports = function (api: any) {
+export default class Devices {
+  api: any;
+
+  constructor (api: any) {
+    this.api = api;
+  }
+
   /**
    * Returns a list of all devices associated with the current user
    * @returns {Promise}
    */
-  const list = () => api.get('/devices/list', 'device');
+  list = () => this.api.get('/devices/list', 'device');
 
   /**
    * Turns a device off
    * @param device either {id: anId} or anId
    * @returns {*} a Promise
    */
-  const turnOn = (device: any) => api.request('/device/turnOn?' + querystring.stringify({id: device.id || device}));
+  turnOn = (device: any) => this.api.request('/device/turnOn?' + querystring.stringify({id: device.id || device}));
 
   /**
    * Turns a device on
    * @param device either {id: anId} or anId
    * @returns {*} a Promise
    */
-  const turnOff = (device: any) => api.request('/device/turnOff?' + querystring.stringify({id: device.id || device}));
+  turnOff = (device: any) => this.api.request('/device/turnOff?' + querystring.stringify({id: device.id || device}));
 
   /**
    * Returns device history
@@ -28,12 +34,5 @@ module.exports = function (api: any) {
    * @param to timestamp in seconds
    * @returns {*} a Promise
    */
-  const history = (device: any, from: any, to: any) => api.request('/device/history?' + querystring.stringify({id: device.id || device, from: from, to: to}));
-
-  return {
-    list: list,
-    turnOn: turnOn,
-    turnOff: turnOff,
-    history: history
-  };
+  history = (device: any, from: any, to: any) => this.api.request('/device/history?' + querystring.stringify({id: device.id || device, from: from, to: to}));
 };

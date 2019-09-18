@@ -1,11 +1,12 @@
-module.exports = function (api: any) {
+export default class Clients {
+  api: any;
+
+constructor(api: any) {
+  this.api = api;
+}
   /**
    * Returns all clients
    * @returns {Promise}
    */
-  const list = () => api.get('/clients/list', 'client');
-
-  return {
-    list: list
-  };
+  list = () => this.api.get('/clients/list', 'client');
 };

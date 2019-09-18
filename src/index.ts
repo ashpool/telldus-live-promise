@@ -1,6 +1,4 @@
-module.exports = {
-  API: require('./api'),
-  Clients: require('./clients'),
-  Devices: require('./devices'),
-  Sensors: require('./sensors')
-};
+export {default as API} from './api';
+export {default as Clients} from './clients';
+export {default as Devices} from './devices';
+export {default as Sensors} from './sensors';

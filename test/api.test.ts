@@ -1,4 +1,6 @@
 import * as chai from "chai";
+import {ServerResponse} from "http";
+import {API} from '../src';
 
 chai.should();
 
@@ -6,11 +8,10 @@ describe('client', () => {
   describe('#_parseResponse', () => {
     it('returns the result as JSON.parse(body);', (done) => {
       const config = {};
-      const telldus = require('../src');
-      const api = telldus.API(config);
-      const err = null;
+      const api = new API(config);
+      const err = undefined;
       const body = '{"body" : "body"}';
-      const response = {statusCode: 200};
+      const response = {statusCode: 200} as ServerResponse;
       const resolve = (value: any) => {
         value.body.should.equal('body');
         done();
@@ -20,11 +21,10 @@ describe('client', () => {
     });
     it('response code other than 200 yield an error', (done) => {
       const config = {};
-      const telldus = require('../src');
-      const api = telldus.API(config);
-      const err = null;
+      const api = new API(config);
+      const err = undefined;
       const body = '{"body" : "body"}';
-      const response = {statusCode: 404};
+      const response = {statusCode: 404} as ServerResponse;
       const resolve = () => done('this one should have failed');
       const reject = (reason: any) => {
         reason.name.should.equals('Error');
@@ -35,11 +35,10 @@ describe('client', () => {
     });
     it('broken body yields an error', function (done) {
       const config = {};
-      const telldus = require('../src');
-      const api = telldus.API(config);
-      const err = null;
+      const api = new API(config);
+      const err = undefined;
       const body = {body: 'this is not proper json'};
-      const response = {statusCode: 200};
+      const response = {statusCode: 200} as ServerResponse;
       const resolve = function () {
         done('this one should have failed');
       };
@@ -52,11 +51,10 @@ describe('client', () => {
     });
     it('yields an error if err is not empty', function (done) {
       const config = {};
-      const telldus = require('../src');
-      const api = telldus.API(config);
+      const api = new API(config);
       const err = new Error('This is an error');
       const body = '{"body": "body"}';
-      const response = {statusCode: 200};
+      const response = {statusCode: 200} as ServerResponse;
       const resolve = function () {
         done('this one should have failed');
       };
