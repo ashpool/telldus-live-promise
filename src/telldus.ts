@@ -1,5 +1,6 @@
 import {ServerResponse} from "http";
 import OAuth from 'oauth';
+import {Sensor} from "./types";
 
 export default class Telldus {
 
@@ -30,13 +31,12 @@ export default class Telldus {
   /**
    * Performs a secure oauth request to Telldus API.
    * @param path
-   * @param json optional
    * @returns {Promise}
    */
-  request = (path: string) => {
+  public request = (path: string): Promise<Sensor[]> => {
     const that = this;
     return new Promise((resolve: Function, reject: Function) => {
-      this.oauth.get(
+      that.oauth.get(
         'https://api.telldus.com/json' + path,
         this.config.telldusToken,
         this.config.telldusTokenSecret,
@@ -46,10 +46,11 @@ export default class Telldus {
     });
   };
 
-  get = (path: string, key: string) => {
+  public get = (path: string, key: string): Promise<any> => {
+    const that = this;
     return new Promise(function (resolve: Function, reject: Function) {
       // @ts-ignore
-      return request(path).then(function (result: any) {
+      return that.request(path).then(function (result: any) {
         return resolve(result[key]);
       }, function (reason: any) {
         reject(reason);

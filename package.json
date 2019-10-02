@@ -22,7 +22,7 @@
     "build"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --declaration",
     "eslint:fix": "eslint **/*.ts --fix",
     "test": "eslint **/*.ts && mocha -r ts-node/register test/**/*.test.ts",
     "prettier": "prettier --write '{*/**/*,*}.{js,md,json,d.ts}'",
