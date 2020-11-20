@@ -29,9 +29,9 @@ var config = {
   telldusTokenSecret: "..."
 },
 telldus = require('telldus-live-promise'),
-api = telldus.API(config),
-sensors = telldus.Sensors(api);
-devices = telldus.Devices(api);
+api = new telldus.Telldus(config),
+sensors = new telldus.Sensors(api);
+devices = new telldus.Devices(api);
 ```
 
 ### Sensors
