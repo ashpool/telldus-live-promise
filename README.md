@@ -1,10 +1,11 @@
 # telldus-live-promise
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Actions Status](https://github.com/ashpool/telldus-live-promise/workflows/Node.js%20Package/badge.svg)](https://github.com/ashpool/telldus-live/actions) [![Actions Status](https://github.com/ashpool/telldus-live/workflows/Node%20CI/badge.svg)](https://github.com/ashpool/telldus-live/actions)
 
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Actions Status](https://github.com/ashpool/telldus-live-promise/workflows/Node.js%20Package/badge.svg)](https://github.com/ashpool/telldus-live/actions) [![Actions Status](https://github.com/ashpool/telldus-live/workflows/Node%20CI/badge.svg)](https://github.com/ashpool/telldus-live/actions)
 
 A node.js module to interface with the [Telldus Live API](http://api.telldus.com)
 
 ## Before Starting
+
 You will need:
 
 - Telldus Live account [login.telldus.com](https://login.telldus.com)
@@ -37,6 +38,7 @@ devices = telldus.Devices(api);
 ### Sensors
 
 #### Read values from all sensors
+
 ```bash
 sensors.list().then(<do something useful>).catch(<log error>);
 ```

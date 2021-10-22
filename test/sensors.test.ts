@@ -1,10 +1,3 @@
-/*jshint undef:false */
-import chaiAsPromised from 'chai-as-promised';
-import * as chai from "chai";
-
-chai.should();
-chai.use(chaiAsPromised);
-
 const sensorsResult =
     [{
       id: '2813567',
@@ -38,64 +31,52 @@ const sensorsResult =
       battery: 254
     }],
   sensorInfoResult =
-  {
-    id: '3120422',
-    clientName: 'home',
-    name: 'wind',
-    lastUpdated: 1427266235,
-    ignored: 0,
-    editable: 1,
-    data: [{name: 'wavg', value: '4.4', scale: '0'},
-      {name: 'wgust', value: '4.5', scale: '0'},
-      {name: 'wdir', value: '157.5', scale: '0'}],
-    protocol: 'oregon',
-    sensorId: '12',
-    timezoneoffset: 3600,
-    battery: '253',
-    keepHistory: '0'
-  };
+    {
+      id: '3120422',
+      clientName: 'home',
+      name: 'wind',
+      lastUpdated: 1427266235,
+      ignored: 0,
+      editable: 1,
+      data: [{name: 'wavg', value: '4.4', scale: '0'},
+        {name: 'wgust', value: '4.5', scale: '0'},
+        {name: 'wdir', value: '157.5', scale: '0'}],
+      protocol: 'oregon',
+      sensorId: '12',
+      timezoneoffset: 3600,
+      battery: '253',
+      keepHistory: '0'
+    };
 
-describe('sensors', function () {
-  describe('#list()', function () {
-    describe('success', function () {
-      it('returns an array of sensors', function (done) {
-        var api = {
-            request: function invoke() {
-              return new Promise(function (resolve) {
-                resolve(sensorsResult);
-              });
-            }
-          },
-          sensors = require('../src').Sensors(api);
-        sensors.list().should.eventually.equal(sensorsResult).notify(done);
+describe('sensors',  () => {
+  describe('#list()', () => {
+    describe('success',  () => {
+      it('returns an array of sensors',  async () => {
+        const api = {
+            request: () => new Promise((resolve) => resolve(sensorsResult))
+          };
+          const sensors = require('../src').Sensors(api);
+        expect(await sensors.list()).toEqual(sensorsResult);
       });
     });
-    describe('failure', function () {
-      it('rejects with an Error', function (done) {
-        var api = {
-            request: function invoke() {
-              return new Promise(function (resolve, reject) {
-                reject(new Error('failure'));
-              });
-            }
-          },
-          sensors = require('../src').Sensors(api);
-        sensors.list().should.be.rejectedWith(Error).notify(done);
+    describe('failure', () => {
+      it('rejects with an Error', async () => {
+        const api = {
+          request: () => new Promise(() => new Error('failure'))
+        };
+        const sensors = require('../src').Sensors(api);
+        expect(sensors.list()).rejects.toThrow(Error);
       });
     });
   });
-  describe('#info', function () {
-    describe('success', function () {
-      it('returns sensor info', function (done) {
-        var api = {
-            request: function invoke() {
-              return new Promise(function (resolve) {
-                resolve(sensorInfoResult);
-              });
-            }
-          },
-          sensors = require('../src').Sensors(api);
-        sensors.info({id: '3120422'}).should.eventually.equal(sensorInfoResult).notify(done);
+  describe('#info', () => {
+    describe('success', () => {
+      it('returns sensor info', async () => {
+        const api = {
+          request: () => new Promise((resolve) => resolve(sensorInfoResult))
+        };
+        const sensors = require('../src').Sensors(api);
+        expect(await sensors.info({id: '3120422'})).toEqual(sensorInfoResult);
       });
     });
   });
