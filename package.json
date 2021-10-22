@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "eslint": "eslint . --ext ts --fix",
+    "eslint": "eslint . --ext ts",
     "eslint:fix": "eslint . --ext ts --fix",
     "test:security": "npm audit --audit-level=high --registry=https://registry.npmjs.org",
     "test": "npm run test:security && npm run eslint && jest --coverage --detectOpenHandles",
