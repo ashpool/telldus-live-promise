@@ -1,11 +1,9 @@
-module.exports = function (api: any) {
+module.exports = (api: any) => {
   /**
    * Returns all clients
    * @returns {Promise}
    */
-  function list() {
-    return api.get('/clients/list', 'client');
-  }
+  const list = () => api.get('/clients/list', 'client');
 
   return {
     list: list

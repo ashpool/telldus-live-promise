@@ -1,10 +1,4 @@
-import chaiAsPromised from 'chai-as-promised';
-import * as chai from "chai";
-
-chai.should();
-chai.use(chaiAsPromised);
-
-var devicesResult = [
+const devicesResult = [
   {
     id: '240000',
     clientDeviceId: '14',
@@ -46,76 +40,56 @@ var devicesResult = [
     editable: 1
   }];
 
-describe('devices', function () {
-  describe('#list()', function () {
-    describe('success', function () {
-      it('returns an array of devices', function (done) {
-        var api = {
-            get: function invoke() {
-              return new Promise(function (resolve) {
-                resolve(devicesResult);
-              });
-            }
-          },
-          devices = require('../src').Devices(api);
-        devices.list().should.eventually.equal(devicesResult).notify(done);
+describe('devices', () => {
+  describe('#list()', () => {
+    describe('success', () => {
+      it('returns an array of devices', async () => {
+        const api = {
+          get: () => new Promise((resolve) => resolve(devicesResult))
+        };
+        const devices = require('../src').Devices(api);
+        expect(await devices.list()).toEqual(devicesResult);
       });
     });
-    describe('failure', function () {
-      it('rejects with an Error', function (done) {
-        var api = {
-            get: function invoke() {
-              return new Promise(function (resolve, reject) {
-                reject(new Error('failure'));
-              });
-            }
-          },
-          devices = require('../src').Devices(api);
-        devices.list().should.be.rejectedWith(Error).notify(done);
+    describe('failure', () => {
+      it('rejects with an Error', () => {
+        const api = {
+          get: () => new Promise((resolve, reject) => reject(new Error('failure')))
+        };
+        const devices = require('../src').Devices(api);
+        expect(devices.list()).rejects.toThrow(Error);
       });
     });
   });
-  describe('#turnOn', function () {
-    var success = {status: 'success'};
-    it('takes object {id: "anId""}) as argument', function (done) {
-      var api = {
-          request: function invoke() {
-            return new Promise(function (resolve) {
-              resolve(success);
-            });
-          }
-        },
-        devices = require('../src').Devices(api);
-      devices.turnOn({id: 'anId'}).should.eventually.equal(success).notify(done);
+  describe('#turnOn', () => {
+    const success = {status: 'success'};
+    it('takes object {id: "anId""}) as argument', async () => {
+      const api = {
+        request: () => new Promise((resolve) => resolve(success))
+      };
+      const devices = require('../src').Devices(api);
+      expect(await devices.turnOn({id: 'anId'})).toEqual(success);
     });
-    it('takes string id as argument', function (done) {
-      var api = {
-          request: function invoke() {
-            return new Promise(function (resolve) {
-              resolve(success);
-            });
-          }
-        },
-        devices = require('../src').Devices(api);
-      devices.turnOn('anId').should.eventually.equal(success).notify(done);
+    it('takes string id as argument', async () => {
+      const api = {
+        request: () => new Promise((resolve) => resolve(success))
+      };
+      const devices = require('../src').Devices(api);
+      expect(await devices.turnOn('anId')).toEqual(success);
     });
   });
-  describe('#history', function () {
-    var success = {status: 'success'};
-    it('returns device history', function (done) {
-      var api = {
-          request: function invoke() {
-            return new Promise(function (resolve) {
-              resolve(success);
-            });
-          }
-        },
-        devices = require('../src').Devices(api);
-      devices.history({id: 'anId'}, 1400471506, 1479471506).should.eventually.equal(success).notify(done);
+  describe('#history', () => {
+    const success = {status: 'success'};
+    it('returns device history', async () => {
+      const api = {
+        request: () => new Promise((resolve) => resolve(success))
+      };
+      const devices = require('../src').Devices(api);
+      expect(await devices.history({id: 'anId'}, 1400471506, 1479471506)).toEqual(success);
     })
   });
-  describe('#turnOff', function () {
-    var success = {
+  describe('#turnOff', () => {
+    const success = {
       status: {
         'history': [{
           'ts': 1477467846,
@@ -132,27 +106,19 @@ describe('devices', function () {
         }]
       }
     };
-    it('takes object {id: "anId""}) as argument', function (done) {
-      var api = {
-          request: function invoke() {
-            return new Promise(function (resolve) {
-              resolve(success);
-            });
-          }
-        },
-        devices = require('../src').Devices(api);
-      devices.turnOff({id: 'anId'}).should.eventually.equal(success).notify(done);
+    it('takes object {id: "anId""}) as argument', async () => {
+      const api = {
+        request: () => new Promise((resolve) => resolve(success))
+      };
+      const devices = require('../src').Devices(api);
+      expect(await devices.turnOff({id: 'anId'})).toEqual(success);
     });
-    it('takes string id as argument', function (done) {
-      var api = {
-          request: function invoke() {
-            return new Promise(function (resolve) {
-              resolve(success);
-            });
-          }
-        },
-        devices = require('../src').Devices(api);
-      devices.turnOff('anId').should.eventually.equal(success).notify(done);
+    it('takes string id as argument', async () => {
+      const api = {
+        request: () => new Promise((resolve) => resolve(success))
+      };
+      const devices = require('../src').Devices(api);
+      expect(await devices.turnOff('anId')).toEqual(success);
     });
   });
 });
